@@ -1,0 +1,35 @@
+<md-card>
+  <md-toolbar>
+    <h2>Load JSON</h2>
+    <span fxFlex="1 1 10%"></span>
+
+    <md-select placeholder="JSON file" [(ngModel)]="selectedOption" floatPlaceholder="never" md-tooltip="Select JSON file" (change)="loadJSON()">
+      <md-option *ngFor="let option of options" [value]="option.name">{{ option.name }}</md-option>
+    </md-select>
+  </md-toolbar>
+
+  <md-card-content>
+    <ng-container *ngIf="selectedOption; then loadedT else emptyT">
+    </ng-container>
+    <ng-template #emptyT>Select JSON File</ng-template>
+    <ng-template #loadedT>
+      <ng-container *ngIf="loading; then loadingT else contentT"></ng-container>
+      <ng-template #loadingT>
+        <md-spinner></md-spinner>
+      </ng-template>
+      <ng-template #contentT>
+        <ng-container *ngIf="hasError; then errorT else jsonT"></ng-container>
+        content</ng-template>
+      <ng-template #errorT>
+        Error
+      </ng-template>
+      <ng-template #jsonT>
+        json
+      </ng-template>
+    </ng-template>
+
+
+  </md-card-content>
+
+
+</md-card>
