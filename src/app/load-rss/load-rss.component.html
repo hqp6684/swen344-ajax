@@ -1,0 +1,47 @@
+<md-card>
+  <md-toolbar>
+    <h2>Load RSS Feed</h2>
+    <span fxFlex="1 1 10%"></span>
+
+    <md-select placeholder="RSS source" [(ngModel)]="selectedOption" floatPlaceholder="never" md-tooltip="Select JSON file" (change)="loadJSON()">
+      <md-option *ngFor="let option of options" [value]="option">{{ option.name }}</md-option>
+    </md-select>
+  </md-toolbar>
+
+  <md-card-content>
+    <ng-container *ngIf="selectedOption; then loadedT else emptyT">
+    </ng-container>
+    <ng-template #emptyT>Select source</ng-template>
+    <ng-template #loadedT>
+      <ng-container *ngIf="loading; then loadingT else contentT"></ng-container>
+      <ng-template #loadingT>
+        <md-spinner></md-spinner>
+      </ng-template>
+      <ng-template #contentT>
+        <ng-container *ngIf="hasError; then errorT else jsonT"></ng-container>
+      </ng-template>
+      <ng-template #errorT>
+        <h3>Error loading source</h3>
+        <p>Please select different source</p>
+      </ng-template>
+      <ng-template #jsonT>
+        <!-- three line list -->
+        <md-list>
+          <md-list-item *ngFor="let article  of articles">
+            <h3 md-line> {{article.title}} </h3>
+            <p md-line> {{article.description}} </p>
+            <p md-line class="demo-2"> {{article.publishedAt|date}} </p>
+            <button md-button="" (click)="openThis(article.url)">
+              <md-icon>info</md-icon>
+              <span>Read</span>
+            </button>
+          </md-list-item>
+        </md-list>
+      </ng-template>
+    </ng-template>
+
+
+  </md-card-content>
+
+
+</md-card>

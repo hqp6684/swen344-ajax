@@ -9,11 +9,15 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 
 import { AppComponent } from './app.component';
 import { LoadJsonComponent } from './load-json/load-json.component';
+import { LoadRssComponent } from './load-rss/load-rss.component';
+import { InfiniteScrollingComponent } from './infinite-scrolling/infinite-scrolling.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    LoadJsonComponent
+    LoadJsonComponent,
+    LoadRssComponent,
+    InfiniteScrollingComponent
   ],
   imports: [
     BrowserModule,

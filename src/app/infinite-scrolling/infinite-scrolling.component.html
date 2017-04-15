@@ -1,0 +1,12 @@
+<md-card>
+  <md-toolbar>
+    <h2>Infinite Scrolling</h2>
+  </md-toolbar>
+  <div #sidenavContainer id="infiniteContainer" cdk-scrollable>
+    <md-toolbar *ngFor="let item of [1,2,3,4,5,6,5,5,4,3,23]">
+      <md-toolbar color="accent"></md-toolbar>
+
+    </md-toolbar>
+  </div>
+
+</md-card>

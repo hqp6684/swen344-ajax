@@ -4,7 +4,7 @@
     <span fxFlex="1 1 10%"></span>
 
     <md-select placeholder="JSON file" [(ngModel)]="selectedOption" floatPlaceholder="never" md-tooltip="Select JSON file" (change)="loadJSON()">
-      <md-option *ngFor="let option of options" [value]="option.name">{{ option.name }}</md-option>
+      <md-option *ngFor="let option of options" [value]="option">{{ option.name }}</md-option>
     </md-select>
   </md-toolbar>
 
@@ -19,12 +19,13 @@
       </ng-template>
       <ng-template #contentT>
         <ng-container *ngIf="hasError; then errorT else jsonT"></ng-container>
-        content</ng-template>
-      <ng-template #errorT>
-        Error
-      </ng-template>
-      <ng-template #jsonT>
-        json
+        <ng-template #errorT>
+          <h3>Error loading json file</h3>
+          <p>Please select json file again</p>
+        </ng-template>
+        <ng-template #jsonT>
+          {{json|json}}
+        </ng-template>
       </ng-template>
     </ng-template>
 
